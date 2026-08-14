@@ -4,6 +4,24 @@ TiniTasker is a digital platform designed for the Canadian service businesses sp
 ## Business information
 TiniTasker is a b2b saas. Product provides various of functionality that helps technicians and business owners with keeping the data clear and ordered.
 
+## Technical details
+The platform is represented as combination of public/internal APIs and public clients (mobile app, web portal and web public).
+
+#### APIs
+APIs are written in `C# / ASP.NET Core` using service-oriented architecture.
+- [API](https://github.com/tinitasker/api) - The main product API
+- [Identity](https://github.com/tinitasker/identity) - The self-written OIDC provider
+- [Storage](https://github.com/tinitasker/storage) - The wrapper on DigitalOcean Spaces (S3-compatible file storage)
+- [Messaging](https://github.com/tinitasker/messaging) - The wrapper on notifications (Resend/FCM)
+
+#### Hosting
+The platform is hosted on [DigitalOcean](https://cloud.digitalocean.com) using managed infrastructure components in Toronto region datacenter/-s.
+
+#### Front-end
+The platform provides 3 public applications:
+- [Mobile app](https://github.com/tinitasker/app) - Mobile app for business owners / technicians
+- [Web portal](https://github.com/tinitasker/web-portal) - Internal web dashboard for business owners / maangers
+- [Web public](https://github.com/tinitasker/web-public) - Public marketing website
 
 ## Canadian Taxes and Timezones
 #### Tax rates in Canada (as of 2026)
@@ -46,20 +64,3 @@ In TiniTasker, we primarily deal with `GST` and `PST`. `HST` is not directly rep
 | Canada/Central      | CST          | UTC-6      |
 | Canada/Mountain     | MST          | UTC-7      |
 | Canada/Pacific      | PST          | UTC-8      |
-
-#### Canadian provinces
-| Province                | Abbreviation | Timezone           | GST (%) | PST (%) | COMBINED(%) |
-|-------------------------|--------------|--------------------|---------|---------|-------------|
-| Alberta                 | AB           | Mountain (MST)     | 5       | N/A     | 5           |
-| British Columbia        | BC           | Pacific (PST)      | 5       | 7       | 12          |
-| Manitoba                | MB           | Central (CST)      | 5       | 7       | 12          |
-| New Brunswick           | NB           | Atlantic (AST)     | 15      | N/A     | 15          |
-| Newfoundland & Labrador | NL           | Newfoundland (NST) | 15      | N/A     | 15          |
-| Northwest Territories   | NT           | Mountain (MST)     | 5       | N/A     | 5           |
-| Nova Scotia             | NS           | Atlantic (AST)     | 15      | N/A     | 15          |
-| Nunavut                 | NU           | Eastern (EST)      | 5       | N/A     | 5           |
-| Ontario                 | ON           | Eastern (EST)      | 13      | N/A     | 13          |
-| Prince Edward Island    | PE           | Atlantic (AST)     | 15      | N/A     | 15          |
-| Quebec                  | QC           | Eastern (EST)      | 5       | 9.975   | 14.975      |
-| Saskatchewan            | SK           | Central (CST)      | 5       | 6       | 11          |
-| Yukon                   | YT           | Pacific (PST)      | 5       | N/A     | 5           |
