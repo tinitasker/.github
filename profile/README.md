@@ -4,6 +4,23 @@ TiniTasker is a digital platform designed for the Canadian service businesses sp
 ## Business information
 TiniTasker is a b2b saas. Product provides various of functionality that helps technicians and business owners with keeping the data clear and ordered.
 
+#### Terminology
+**User** is the person who uses TiniTasker. The platform is designed for business owners and technicians.
+
+**Organization** is the subset of business entities (provided below) and users.
+
+**Item** is the product/service provided by organization.
+
+**Expense** is the business-related expense.
+
+**Customer** is the client of the organization.
+
+**Estimate** is the document representing approximate charges for the services/products provided by the organization.
+
+**Invoice** is the document representing charges and payments for the services/products provided by the organization.
+
+**Job** is the entity that describes job.
+
 ## Technical details
 The platform is represented as combination of public/internal APIs and public clients (mobile app, web portal and web public).
 
@@ -14,8 +31,36 @@ APIs are written in `C# / ASP.NET Core` using service-oriented architecture.
 - [Storage](https://github.com/tinitasker/storage) - The wrapper on DigitalOcean Spaces (S3-compatible file storage)
 - [Messaging](https://github.com/tinitasker/messaging) - The wrapper on notifications (Resend/FCM)
 
+###### API
+Responsible for all business related operations.
+
+###### Identity
+Responsible for user sign-up, sign-in, issuing tokens via openid-connect, using `client_credentials`, `password` and `refresh_token` flows.
+
+###### Storage
+Responsible for work with files and DigitalOcean Spaces (s3-compatible file storage). Files are private, upload and download operations are executed via storage service.
+
+###### Messaging
+Responsible for delivering notifications. Email and push channels are supported as for now.
+
 #### Hosting
 The platform is hosted on [DigitalOcean](https://cloud.digitalocean.com) using managed infrastructure components in Toronto region datacenter/-s.
+
+###### Database
+TiniTasker uses PostgreSQL as a primary operational database (OLTP). Multi-tenancy is implemented via pooled model (shared database, shared schema), segregation by `organization_id` column.
+
+###### Spaces
+DigitalOcean Spaces is the s3-compatible file storage. TiniTasker uses DigitalOcean Spaces for uploading/downloading files.
+
+#### 3rd party integrations
+###### Stripe
+[Stripe](https://stripe.com) is the primary (and only) processor for payments for TiniTasker. The product is distributed as SaaS with montly subscription.
+
+###### Resend
+[Resend](https://resend.com) is the priomary email provider.
+
+###### Firebase Cloud Messaging
+[FCM](https://firebase.google.com) is the primary push notifications provider.
 
 #### Front-end
 The platform provides 3 public applications:
