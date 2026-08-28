@@ -1,111 +1,21 @@
-# TiniTasker API
-TiniTasker is a digital platform designed for the Canadian service businesses specific needs.
+# TiniTasker
 
-## Business information
-TiniTasker is a b2b saas. Product provides various of functionality that helps technicians and business owners with keeping the data clear and ordered.
+TiniTasker is a Canadian B2B SaaS platform for service businesses. It helps business owners and technicians keep operational and financial data clear and organized.
 
-#### Terminology
-**User** is the person who uses TiniTasker. The platform is designed for business owners and technicians.
+For the high-level system map, see the [Architecture Overview](../docs/architecture.md). For organization-wide engineering policy, see the [Engineering Handbook](../docs/README.md).
 
-**Organization** is the subset of business entities (provided below) and users.
+## Architecture
 
-**Item** is the product/service provided by organization.
+The mobile app and web portal authenticate through Identity and use the product API plus authorized attachment storage. The server-rendered public web application uses server-only service credentials. API and Identity request notification delivery through Messaging. See the [global README](../README.md) for the component map and delivery architecture.
 
-**Expense** is the business-related expense.
+## Services
 
-**Customer** is the client of the organization.
+- [API](https://github.com/tinitasker/api) — product business operations and public APIs.
+- [Identity](https://github.com/tinitasker/identity) — OpenID Connect authentication and token issuance.
+- [Storage](https://github.com/tinitasker/storage) — private attachment access over S3-compatible storage.
+- [Messaging](https://github.com/tinitasker/messaging) — email and push notifications.
+- [Mobile app](https://github.com/tinitasker/app) — app for business owners and technicians.
+- [Web portal](https://github.com/tinitasker/web-portal) — internal dashboard for business owners and managers.
+- [Public web](https://github.com/tinitasker/web-public) — marketing site plus public estimate and invoice experiences.
 
-**Estimate** is the document representing approximate charges for the services/products provided by the organization.
-
-**Invoice** is the document representing charges and payments for the services/products provided by the organization.
-
-**Job** is the entity that describes job.
-
-## Technical details
-The platform is represented as combination of public/internal APIs and public clients (mobile app, web portal and web public).
-
-#### APIs
-APIs are written in `C# / ASP.NET Core` using service-oriented architecture.
-- [API](https://github.com/tinitasker/api) - The main product API
-- [Identity](https://github.com/tinitasker/identity) - The self-written OIDC provider
-- [Storage](https://github.com/tinitasker/storage) - The wrapper on DigitalOcean Spaces (S3-compatible file storage)
-- [Messaging](https://github.com/tinitasker/messaging) - The wrapper on notifications (Resend/FCM)
-
-###### API
-Responsible for all business related operations.
-
-###### Identity
-Responsible for user sign-up, sign-in, issuing tokens via openid-connect, using `client_credentials`, `password` and `refresh_token` flows.
-
-###### Storage
-Responsible for work with files and DigitalOcean Spaces (s3-compatible file storage). Files are private, upload and download operations are executed via storage service.
-
-###### Messaging
-Responsible for delivering notifications. Email and push channels are supported as for now.
-
-#### Hosting
-The platform is hosted on [DigitalOcean](https://cloud.digitalocean.com) using managed infrastructure components in Toronto region datacenter/-s.
-
-###### Database
-TiniTasker uses PostgreSQL as a primary operational database (OLTP). Multi-tenancy is implemented via pooled model (shared database, shared schema), segregation by `organization_id` column.
-
-###### Spaces
-DigitalOcean Spaces is the s3-compatible file storage. TiniTasker uses DigitalOcean Spaces for uploading/downloading files.
-
-#### 3rd party integrations
-###### Stripe
-[Stripe](https://stripe.com) is the primary (and only) processor for payments for TiniTasker. The product is distributed as SaaS with montly subscription.
-
-###### Resend
-[Resend](https://resend.com) is the priomary email provider.
-
-###### Firebase Cloud Messaging
-[FCM](https://firebase.google.com) is the primary push notifications provider.
-
-#### Front-end
-The platform provides 3 public applications:
-- [Mobile app](https://github.com/tinitasker/app) - Mobile app for business owners / technicians
-- [Web portal](https://github.com/tinitasker/web-portal) - Internal web dashboard for business owners / maangers
-- [Web public](https://github.com/tinitasker/web-public) - Public marketing website
-
-## Canadian Taxes and Timezones
-#### Tax rates in Canada (as of 2026)
-- `GST` - Goods and Services Tax
-    - A federal tax of `5%` applied across all provinces and territories.
-- `HST` - Harmonized Sales Tax
-    - A single, combined tax - federal + provincial in participating provinces.
-- `PST/QST/RST` - Provincial Sales Tax / Quebec Sales Tax / Retail Sales Tax
-    - A provincial tax added on top of the `5%` GST.
-
-#### Canadian sales tax structure by province (as of 2026)
-| Province                | Tax type  | GST (%) | HST (%) | PST (%) | QST (%) | Total tax (%) |
-|-------------------------|-----------|---------|---------|---------|---------|---------------|
-| Alberta                 | GST       | 5       | N/A     | N/A     | N/A     | 5             |
-| British Columbia        | GST + PST | 5       | N/A     | 7       | N/A     | 12            |
-| Manitoba                | GST + PST | 5       | N/A     | 7       | N/A     | 12            |
-| New Brunswick           | HST       | N/A     | 15      | N/A     | N/A     | 15            |
-| Newfoundland & Labrador | HST       | N/A     | 15      | N/A     | N/A     | 15            |
-| Northwest Territories   | GST       | 5       | N/A     | N/A     | N/A     | 5             |
-| Nova Scotia             | HST       | N/A     | 15      | N/A     | N/A     | 15            |
-| Nunavut                 | GST       | 5       | N/A     | N/A     | N/A     | 5             |
-| Ontario                 | HST       | N/A     | 13      | N/A     | N/A     | 13            |
-| Prince Edward Island    | HST       | N/A     | 15      | N/A     | N/A     | 15            |
-| Quebec                  | GST + QST | 5       | N/A     | N/A     | 9.975   | 14.975        |
-| Saskatchewan            | GST + PST | 5       | N/A     | 6       | N/A     | 11            |
-| Yukon                   | GST       | 5       | N/A     | N/A     | N/A     | 5             |
-
-#### Note on TiniTasker and Canadian Taxes
-In TiniTasker, we primarily deal with `GST` and `PST`. `HST` is not directly represented but can be calculated based on the province's `GST` and `PST` rates.
-
-- **GST** - `GST/HST` - represents either `GST` or `HST` depending on the province.
-- **PST** - `PST/QST` - represents the provincial portion of the tax where applicable.
-
-#### Canadian timezones
-| Timezone            | Abbreviation | UTC Offset |
-|---------------------|--------------|------------|
-| Canada/Newfoundland | NST          | UTC-3:30   |
-| Canada/Atlantic     | AST          | UTC-4      |
-| Canada/Eastern      | EST          | UTC-5      |
-| Canada/Central      | CST          | UTC-6      |
-| Canada/Mountain     | MST          | UTC-7      |
-| Canada/Pacific      | PST          | UTC-8      |
+TiniTasker is hosted on DigitalOcean in the Toronto region and uses PostgreSQL, DigitalOcean Spaces, Stripe, Resend, and Firebase Cloud Messaging.
