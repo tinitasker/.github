@@ -4,19 +4,19 @@ TiniTasker is a Canadian B2B SaaS product for service businesses. It helps busin
 
 ## Canonical ownership
 
-| Repository | Owns |
-| --- | --- |
-| `api` | Product business behavior, product APIs, domain calculations, and the `public` PostgreSQL schema. |
-| `identity` | Authentication, OpenID Connect, tokens, and the `identity` schema. |
-| `storage` | Private organization-scoped attachment access and object-storage integration. |
-| `messaging` | Email and push delivery, notification templates, and delivery audit behavior. |
-| `app` | Mobile experience for business owners and technicians. |
-| `web-portal` | Internal browser dashboard for business owners and managers. |
-| `web-public` | Public marketing site plus public estimate and invoice experiences. |
-| `infrastructure` | Terraform and DigitalOcean infrastructure definitions. |
-| `migrations-runner` | Validated, digest-pinned PostgreSQL migration packaging and execution image. |
-| `actions` | Shared versioned composite GitHub Actions. |
-| `.github` | Organization-wide documentation and GitHub community-health defaults. |
+| Repository          | Owns                                                                          |
+|---------------------|-------------------------------------------------------------------------------|
+| `api`               | Product behavior, APIs, financial calculations, and the `public` schema.      |
+| `identity`          | Authentication, OpenID Connect, tokens, and the `identity` schema.            |
+| `storage`           | Private organization-scoped attachment access and object-storage integration. |
+| `messaging`         | Email/push delivery, notification templates, and delivery audit behavior.     |
+| `app`               | Mobile experience for business owners and technicians.                        |
+| `web-portal`        | Internal browser dashboard for business owners and managers.                  |
+| `web-public`        | Public marketing site plus public estimate and invoice experiences.           |
+| `infrastructure`    | Terraform and DigitalOcean infrastructure definitions.                        |
+| `migrations-runner` | Validated, digest-pinned PostgreSQL migration packaging and execution image.  |
+| `actions`           | Shared versioned composite GitHub Actions.                                    |
+| `.github`           | Organization-wide documentation and GitHub community-health defaults.         |
 
 The service that owns a domain rule remains its source of truth. Other services and clients consume an explicit contract rather than reimplementing the rule.
 

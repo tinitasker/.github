@@ -22,14 +22,14 @@ These rules keep the API, mobile app, web clients, services, and infrastructure 
 - Store a business date separately when the domain means a calendar date rather than an instant. Use the organization's timezone when interpreting scheduling and business-day rules.
 - The currently supported product timezone codes and IANA zone identifiers are:
 
-  | Code | IANA zone |
-  | --- | --- |
+  | Code  | IANA zone             |
+  |-------|-----------------------|
   | `NST` | `Canada/Newfoundland` |
-  | `AST` | `Canada/Atlantic` |
-  | `EST` | `Canada/Eastern` |
-  | `CST` | `Canada/Central` |
-  | `MST` | `Canada/Mountain` |
-  | `PST` | `Canada/Pacific` |
+  | `AST` | `Canada/Atlantic`     |
+  | `EST` | `Canada/Eastern`      |
+  | `CST` | `Canada/Central`      |
+  | `MST` | `Canada/Mountain`     |
+  | `PST` | `Canada/Pacific`      |
 
 - Do not derive a business timezone from a fixed UTC offset or a display abbreviation. Daylight-saving rules apply through the stored zone identifier.
 - Do not introduce a new timezone string representation without a coordinated API, app, and web migration.
