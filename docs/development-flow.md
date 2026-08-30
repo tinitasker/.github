@@ -39,6 +39,16 @@ For one logical cross-repository change, the branch name must be identical every
 
 Release and operational tags are immutable references, not development branches. They may record a reviewed `main` commit or release metadata, but must never be used to land code outside a feature-branch PR. Repository-local instructions define any approved release-tag pattern and protection.
 
+Repositories with tag-driven releases use `vX.Y.Z-staging` for staging and
+`vX.Y.Z` for production, with no leading zeroes. A release tag must be a new,
+non-forced tag whose commit is reachable from `main`; a repository may impose a
+stricter requirement when its deployment platform resolves `main` at deploy
+time. Workflows consume the shared `tinitasker/actions/release/read-tag` action
+pinned to a reviewed full commit SHA so format, immutability, ancestry, and
+release metadata are enforced consistently. Protect the corresponding tag
+patterns and GitHub Environment deployment-tag patterns before enabling a new
+tag-triggered workflow.
+
 ## 3. Implement and verify
 
 - Follow the local `AGENTS.md` and existing repository documentation for stack, tests, deployment, migrations, and secrets.

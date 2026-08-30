@@ -46,3 +46,9 @@ TiniTasker uses pooled multi-tenancy: services share databases and schemas while
 Business policy that changes the meaning of data across repositories belongs here or in [cross-repository contracts](cross-repository-contracts.md), not in a client-only workaround. Examples include tax treatment, invoice status semantics, organization timezones, and shared enum values.
 
 Service-specific behavior, such as notification template placeholders or storage cache controls, remains documented in the owning repository.
+
+### Organization creation
+
+- A user may create an organization when they own no organizations, or when every subscription-required organization they own is out of trial and has an active subscription.
+- Memberships where the user is not an organization owner do not affect creation eligibility. Organizations that do not require a subscription are exempt.
+- The API is the source of truth for this policy. Clients use the API eligibility contract for guidance and must still handle the API rejecting creation if eligibility changes before submission.
