@@ -44,9 +44,10 @@ Repositories with tag-driven releases use `vX.Y.Z-staging` for staging and
 non-forced. A staging tag may point to a feature-branch commit so it can be
 deployed before a pull request exists; it does not land that code on `main`.
 A production tag must point to a commit reachable from `main`. Workflows
-consume the shared `tinitasker/actions/release/read-tag` action pinned to a
-reviewed full commit SHA so format, tag-target integrity, and release metadata
-are enforced consistently, with `main` ancestry enforced for production.
+consume the shared `tinitasker/actions/release/read-tag@main` action so format,
+tag-target integrity, and release metadata are enforced consistently, with
+`main` ancestry enforced for production. All `tinitasker/actions` references
+track its latest reviewed `main` branch; do not pin them to a commit or tag.
 
 ## 3. Implement and verify
 
