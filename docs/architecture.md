@@ -43,7 +43,7 @@ flowchart LR
 | `api`               | Product-domain APIs and authoritative business calculations.   | PostgreSQL; service-token calls to Messaging; Stripe, Helcim, and Google Places.       |
 | `storage`           | Private, organization-scoped attachment storage.               | PostgreSQL metadata and DigitalOcean Spaces objects.                                   |
 | `messaging`         | Email/push validation, queueing, delivery, and audit behavior. | PostgreSQL; Resend delivery/webhooks and Firebase Cloud Messaging.                     |
-| `actions`           | Versioned shared GitHub Actions primitives.                    | Consumed by repository CI workflows using full immutable commit SHAs.                  |
+| `actions`           | Shared GitHub Actions primitives.                              | Consumed by repository CI workflows from the latest `main` branch.                     |
 | `migrations-runner` | Validated PostgreSQL migration packaging and execution image.  | Used by service delivery through `actions`, as a digest-pinned GHCR image.             |
 | `infrastructure`    | DigitalOcean Terraform definitions and delivery prerequisites. | App Platform, managed PostgreSQL, Spaces, domains, firewalls, and restricted runners.  |
 

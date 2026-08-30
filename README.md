@@ -19,7 +19,7 @@ The [architecture overview](docs/architecture.md) describes components, communic
 | `identity`          | OpenID Connect authentication and token issuance.                     |
 | `storage`           | Private, organization-scoped attachment operations.                   |
 | `messaging`         | Email and push notification validation, delivery, and auditing.       |
-| `actions`           | Versioned shared GitHub Actions primitives.                           |
+| `actions`           | Shared GitHub Actions primitives, consumed from `main`.               |
 | `migrations-runner` | Validated PostgreSQL migration packaging and execution image.         |
 | `infrastructure`    | DigitalOcean Terraform definitions and delivery prerequisites.        |
 | `.github`           | Organization documentation, community-health defaults, and templates. |
