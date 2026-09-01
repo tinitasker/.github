@@ -2,11 +2,11 @@
 
 TiniTasker is a Canadian B2B SaaS platform for service businesses. It helps business owners and technicians keep operational and financial data clear and organized.
 
-For the high-level system map, see the [Architecture Overview](../docs/architecture.md). For organization-wide engineering policy, see the [Engineering Handbook](../docs/README.md).
+For the high-level system map, see the [Architecture Overview](https://github.com/tinitasker/docs/blob/main/docs/architecture.md). For organization-wide engineering policy, see the [Engineering Handbook](https://github.com/tinitasker/docs/blob/main/docs/README.md).
 
 ## Architecture
 
-The mobile app and web portal authenticate through Identity and use the product API plus authorized attachment storage. The server-rendered public web application uses server-only service credentials. API and Identity request notification delivery through Messaging. See the [global README](../README.md) for the component map and delivery architecture.
+The mobile app and web portal authenticate through Identity and use the product API plus authorized attachment storage. The server-rendered public web application uses server-only service credentials. API and Identity request notification delivery through Messaging. See the [documentation repository](https://github.com/tinitasker/docs) for the component map and delivery architecture.
 
 ## Services
 
