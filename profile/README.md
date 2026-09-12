@@ -1,21 +1,8 @@
 # TiniTasker
 
-TiniTasker is a Canadian B2B SaaS platform for service businesses. It helps business owners and technicians keep operational and financial data clear and organized.
+TiniTasker is a Canadian B2B SaaS platform designed specifically for service businesses and independent contractors. We provide tools to help business owners, managers, and field technicians manage clients, schedule jobs, issue estimates and invoices, track expenses, and accept secure payments.
 
-For the high-level system map, see the [Architecture Overview](https://github.com/tinitasker/docs/blob/main/docs/architecture.md). For organization-wide engineering policy, see the [Engineering Handbook](https://github.com/tinitasker/docs/blob/main/docs/README.md).
+Our mission is to simplify operational workflows and financial management for service professionals across Canada, helping them stay organized and get paid faster.
 
-## Architecture
+For more information about our services and product offerings, visit [tinitasker.ca](https://tinitasker.ca).
 
-The mobile app and web portal authenticate through Identity and use the product API plus authorized attachment storage. The server-rendered public web application uses server-only service credentials. API and Identity request notification delivery through Messaging. See the [documentation repository](https://github.com/tinitasker/docs) for the component map and delivery architecture.
-
-## Services
-
-- [API](https://github.com/tinitasker/api) — product business operations and public APIs.
-- [Identity](https://github.com/tinitasker/identity) — OpenID Connect authentication and token issuance.
-- [Storage](https://github.com/tinitasker/storage) — private attachment access over S3-compatible storage.
-- [Messaging](https://github.com/tinitasker/messaging) — email and push notifications.
-- [Mobile app](https://github.com/tinitasker/app) — app for business owners and technicians.
-- [Web portal](https://github.com/tinitasker/web-portal) — internal dashboard for business owners and managers.
-- [Public web](https://github.com/tinitasker/web-public) — marketing site plus public estimate and invoice experiences.
-
-TiniTasker is hosted on DigitalOcean in the Toronto region and uses PostgreSQL, DigitalOcean Spaces, Stripe, Resend, and Firebase Cloud Messaging.

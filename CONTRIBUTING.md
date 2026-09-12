@@ -1,5 +1,9 @@
 # Contributing to TiniTasker
 
-Plan features in [`tinitasker/docs` issues](https://github.com/tinitasker/docs/issues) and track them in [organization Project 1](https://github.com/orgs/tinitasker/projects/1). Read the [development flow](https://github.com/tinitasker/docs/blob/main/docs/development-flow.md) before starting work.
+Thank you for your interest in contributing to TiniTasker.
 
-For product terminology and cross-repository contracts, use the [engineering handbook](https://github.com/tinitasker/docs/blob/main/docs/README.md). Each repository's `AGENTS.md` contains its local technology and deployment guidance.
+TiniTasker repositories follow standard contribution practices:
+- Work is coordinated through GitHub issues and pull requests.
+- All code changes should include appropriate test coverage and documentation updates.
+- Pull requests should describe the changes made and include verification details.
+
