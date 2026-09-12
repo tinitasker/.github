@@ -4,7 +4,7 @@ Describe what this change adds, updates, or removes.
 
 ## Organization project
 
-- Feature issue: <!-- Link to the tinitasker/docs feature issue. -->
+- Feature issue: <!-- Link to the feature issue if applicable. -->
 - Plan slice/sub-issue implemented by this PR: <!-- Link or describe the specific slice. -->
 
 ## Verification
